@@ -25,12 +25,13 @@ fn parse_input(input: &str) -> Result<String,String> {
             process::exit(0)
         },
         "echo" => {
-            let echo = line[1..].join(" ");
-            Ok(echo)
+            let echo = &line[1..];
+            println!("{}",echo[0].to_string());
+            Ok(echo[0].to_string())
         },
         "type" => {
            if line.len() < 2 {
-            println!("The syntax of the comman is incorrect");
+            println!("The syntax of the command is incorrect");
             return Ok(String::from("type"));
            }
            if BUILTINS.contains(&line[1]) {
@@ -59,7 +60,11 @@ fn main() {
     stdin.read_line(&mut input).unwrap();
 
     if let Err(command) = parse_input(&input.as_str()) {
+        if command.is_empty() {
+        println!("input cannot be empty");
+        }else {
         println!("{}: command not found",command);
+        }
     }
 
     // let command: Vec<_> = input.trim().split(' ').collect();
