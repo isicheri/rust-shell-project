@@ -1,3 +1,7 @@
+mod mods {
+    pub mod builtins;
+}
+
 #[allow(unused_imports)]
 use pathsearch::find_executable_in_path;
 use std::io::{self, Write};
@@ -8,7 +12,7 @@ const BUILTINS: [&str; 3] = ["exit", "echo", "type"];
 
 fn parse_input(input: &str) -> Result<String,String> {
     let line = input.trim();
-    let line: Vec<&str> = line.split(" ").collect();
+    let line: Vec<&str> = line.split(" ").collect(); 
     if line.len() == 0 {
      panic!("Command was not provided");
     }
