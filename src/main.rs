@@ -25,9 +25,9 @@ fn parse_input(input: &str) -> Result<String,String> {
             process::exit(0)
         },
         "echo" => {
-            let echo = &line[1..];
-            println!("{}",echo[0].to_string());
-            Ok(echo[0].to_string())
+            let echo = &line[1..].join(" ");
+            println!("{}",echo);
+            Ok(echo.to_string())
         },
         "type" => {
            if line.len() < 2 {
